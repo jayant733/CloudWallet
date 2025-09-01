@@ -18,7 +18,7 @@ model User {
   id String @id @default(uuid())
   email String @unique
   phone String @unique
-  password Strng 
+  password String 
   purchases Purchases[]
 }
 
@@ -30,9 +30,9 @@ model Course {
 }
 
 model Purchases {
-  id String @Id @default(uuid())
+  id String @id @default(uuid())
   courseId String 
-  UserId String 
+  userId String 
   user User  @relation(fields : [userId] , references : [id])
   course Course @relation(fields : [courseId], references :[id])
 
