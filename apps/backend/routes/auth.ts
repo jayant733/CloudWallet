@@ -92,3 +92,25 @@ authRouter.get("/calender/:courseId" , async (req : Request , res : Response) =>
         calenderId : course?.CalenderNotionId
     })
 })
+
+
+authRouter.get("/courses" , async(req , res) =>{
+        const courses = await prismaclient.course.findMany({
+            where  :{
+                purchases : {
+                    some :{
+                        userId :req.userId,
+                    }
+                }
+            }
+        })
+
+
+        res.json({
+            courses : courses.map(c =>({
+                id : c.id,
+                title : c.title,
+                slug : c.title
+            }))
+        })
+})
