@@ -18,10 +18,17 @@ model User {
   id String @id @default(uuid())
   email String @unique
   phone String @unique
+  publicKey String?
   password String 
   purchases Purchases[]
+  role Role @default(USER)
 }
 
+
+enum Role {
+    USER 
+    ADMIN
+}
 model Course {
   id String @id @default(uuid())
   title String 

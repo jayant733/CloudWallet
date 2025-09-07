@@ -1,13 +1,8 @@
 {
-  "name": "common",
+  "name": "mpc-backend",
   "module": "index.ts",
   "type": "module",
   "private": true,
-  "exports" : {
-    "./input" : "./inputs.ts",
-    "./solana" : "./solana.ts"
-
-  },
   "devDependencies": {
     "@types/bun": "latest"
   },
@@ -15,6 +10,9 @@
     "typescript": "^5"
   },
   "dependencies": {
-    "zod": "^4.1.5"
+    "@types/express": "^5.0.3",
+    "express": "^5.1.0",
+    "solana-mpc-tss-lib" :"*",
+    "mpc-db"  :"*"
   }
 }

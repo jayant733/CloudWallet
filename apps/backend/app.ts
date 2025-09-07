@@ -1,17 +1,19 @@
 import express from "express";
 import cors from "cors";
-import { authMiddleware } from "./middleware/auth";
-import { authRouter } from "./routes/auth";
+import { adminauthMiddleware, userauthMiddleware } from "./middleware/auth";
+import { userRouter } from "./routes/userauth";
+import { adminrouter } from "./routes/adminauth";
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-// Auth middleware for protected routes
-app.use("/protected", authMiddleware);
+
 
 // Auth routes
-app.use("/auth", authRouter);
+app.use("/user", userauthMiddleware, userRouter);
+
+app.use("/admin" , adminauthMiddleware, adminrouter )
 
 export default app;

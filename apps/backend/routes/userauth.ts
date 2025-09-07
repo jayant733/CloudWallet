@@ -5,10 +5,10 @@ import { prismaclient } from "db/client"
 import { signinschema } from "common/input"
 import jwt from "jsonwebtoken"
 import bcrypt from "bcrypt";
-export const authRouter = Router();
+export const userRouter= Router();
 
 
-authRouter.post("/login", async (req: Request, res: Response) => {
+userRouter.post("/login", async (req: Request, res: Response) => {
     const {success, data} = signinschema.safeParse(req.body);
     if(!success){
         res.status(403).json({
@@ -56,7 +56,7 @@ authRouter.post("/login", async (req: Request, res: Response) => {
 });
 
 
-authRouter.get("/calender/:courseId" , async (req : Request , res : Response) =>{
+userRouter.get("/calender/:courseId" , async (req : Request , res : Response) =>{
     //fetch the calender on the basisi of the course 
 
     const courseId = req.params.courseId;
@@ -94,7 +94,7 @@ authRouter.get("/calender/:courseId" , async (req : Request , res : Response) =>
 })
 
 
-authRouter.get("/courses" , async(req , res) =>{
+userRouter.get("/courses" , async(req , res) =>{
         const courses = await prismaclient.course.findMany({
             where  :{
                 purchases : {
